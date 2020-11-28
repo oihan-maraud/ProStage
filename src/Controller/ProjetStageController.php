@@ -13,7 +13,9 @@ class ProjetStageController extends AbstractController
      */
     public function index(): Response
     {
-      return  new  Response('<html ><body ><h1 >Bienvenue sur la page d\'accueil de Prostages </h1 ></body ></html >');
+      $texte_accueil = "Bienvenue sur la page d'accueil de Prostages";
+      return  $this ->render('projet_stage/index.html.twig',
+      ['controller_name'=> $texte_accueil ]);
     }
 
     /**
@@ -21,7 +23,9 @@ class ProjetStageController extends AbstractController
      */
     public function entreprises(): Response
     {
-      return  new  Response('<html ><body ><h1 >Cette page affichera la liste des entreprises proposant un stage </h1 ></body ></html >');
+      $texte_entreprises = "Cette page affichera la liste des entreprises proposant un stage";
+      return  $this ->render('projet_stage/entreprises.html.twig',
+      ['controller_name'=> $texte_entreprises ]);
     }
 
     /**
@@ -29,7 +33,9 @@ class ProjetStageController extends AbstractController
      */
     public function formations(): Response
     {
-      return  new  Response('<html ><body ><h1 >Cette page affichera la liste des formations de l\'IUT </h1 ></body ></html >');
+      $texte_formations = "Cette page affichera la liste des formations de l'IUT";
+      return  $this ->render('projet_stage/formations2.html.twig',
+      ['controller_name'=> $texte_formations ]);
     }
 
     /**
@@ -37,6 +43,8 @@ class ProjetStageController extends AbstractController
      */
     public function stages($id): Response
     {
-      return  new  Response('Bienvenue sur la page d\'accueil de Prostages ' . $id );
+      $texte_stages = "Cette page affichera le descriptif du stage ayant pour identifiant ". $id;
+      return  $this ->render('projet_stage/stages.html.twig',
+      ['controller_name'=> $texte_stages ]);
     }
 }
