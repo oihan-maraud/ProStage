@@ -42,8 +42,7 @@ class ProjetStageController extends AbstractController
      */
     public function stages($id): Response
     {
-      $texte_stages = "Cette page affichera le descriptif du stage ayant pour identifiant ". $id;
       return  $this ->render('projet_stage/stages.html.twig',
-      ['controller_name'=> $texte_stages ]);
+      ['idStages'=>  'Capgemini']);
     }
 }
