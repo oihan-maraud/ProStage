@@ -17,25 +17,6 @@ class ProjetStageController extends AbstractController
       return  $this ->render('projet_stage/index.html.twig');
     }
 
-    /**
-     * @Route("/entreprises", name="projet_stage_entreprises")
-     */
-    public function entreprises(): Response
-    {
-      $texte_entreprises = "Cette page affichera la liste des entreprises proposant un stage";
-      return  $this ->render('projet_stage/entreprises.html.twig',
-      ['controller_name'=> $texte_entreprises ]);
-    }
-
-    /**
-     * @Route("/formations", name="projet_stage_formations")
-     */
-    public function formations(): Response
-    {
-      $texte_formations = "Cette page affichera la liste des formations de l'IUT";
-      return  $this ->render('projet_stage/formations.html.twig',
-      ['controller_name'=> $texte_formations ]);
-    }
 
     /**
      * @Route("/stages/{id}", name="projet_stage_Stages")
@@ -43,6 +24,15 @@ class ProjetStageController extends AbstractController
     public function stages($id): Response
     {
       return  $this ->render('projet_stage/stages.html.twig',
-      ['idStages'=>  'Capgemini']);
+      ['idStages'=>  $id]);
+    }
+
+    /**
+     * @Route("/filtre/{id_filtre}", name="projet_stage_filtre")
+     */
+    public function filtre($id_filtre): Response
+    {
+      return  $this ->render('projet_stage/filtres.html.twig',
+      ['filter'=>  $id_filtre]);
     }
 }
