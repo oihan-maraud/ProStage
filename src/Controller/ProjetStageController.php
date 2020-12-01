@@ -14,8 +14,7 @@ class ProjetStageController extends AbstractController
     public function index(): Response
     {
       $texte_accueil = "Bienvenue sur la page d'accueil de Prostages";
-      return  $this ->render('projet_stage/index.html.twig',
-      ['controller_name'=> $texte_accueil ]);
+      return  $this ->render('projet_stage/index.html.twig');
     }
 
     /**
