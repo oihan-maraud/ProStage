@@ -33,7 +33,7 @@ class ProjetStageController extends AbstractController
     public function formations(): Response
     {
       $texte_formations = "Cette page affichera la liste des formations de l'IUT";
-      return  $this ->render('projet_stage/formations2.html.twig',
+      return  $this ->render('projet_stage/formations.html.twig',
       ['controller_name'=> $texte_formations ]);
     }
 
