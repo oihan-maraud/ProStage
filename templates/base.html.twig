@@ -8,9 +8,16 @@
         <!-- BLOC DE FEUILLES DE STYLES -->
         {% block stylesheets %}
         <link href="{{asset('/css/bootstrap.min.css')}}" rel="stylesheet">
+          <link href="{{asset('/css/fontello.css')}}" rel="stylesheet">
         {% endblock %}
     </head>
     <body>
+
+      <!-- BLOC DU MENU -->
+        {% block menu %}
+          <h1>-------------- MENU -------------- <i class="icon-user"></i></h1>
+        {% endblock %}
+
 
       <!-- BLOC JAVASCRIPTS -->
         {% block body %}{% endblock %}
