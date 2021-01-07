@@ -1,9 +1,104 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<h1> <center> Bienvenue sur l'application ProStage </center></h1>
+<h1> <center> Bienvenue sur l'application ProStage<center></h1>
 
-<p>
+<p style="text-indent: 15px;">
   Voici la liste des stages proposées:
 </p>
+<div class="container-fluid">
+<div class="row">
+  <div class="col-md-12">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>
+            Stages
+          </th>
+          <th>
+            Entreprises
+          </th>
+          <th>
+            Formations
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="table table-dark">
+          <td>
+            TB - Monthly
+          </td>
+          <td>
+            01/04/2012
+          </td>
+          <td>
+            Default
+          </td>
+        </tr>
+        <tr class="table table-dark">
+          <td>
+            TB - Monthly
+          </td>
+          <td>
+            01/04/2012
+          </td>
+          <td>
+            Approved
+          </td>
+        </tr>
+        <tr class="table table-dark">
+          <td>
+            TB - Monthly
+          </td>
+          <td>
+            02/04/2012
+          </td>
+          <td>
+            Declined
+          </td>
+        </tr>
+        <tr class="table table-dark">
+          <td>
+            TB - Monthly
+          </td>
+          <td>
+            03/04/2012
+          </td>
+          <td>
+            Pending
+          </td>
+        </tr>
+        <tr class="table table-dark">
+          <td>
+            TB - Monthly
+          </td>
+          <td>
+            04/04/2012
+          </td>
+          <td>
+            Call in to confirm
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <center>
+    <div class="row">
+      <div class="col-md-6">
+
+        <button type="button" class="btn btn-secondary">
+          Filtrer par formation
+        </button>
+      </div>
+      <div class="col-md-6">
+
+        <button type="button" class="btn btn-secondary">
+          Filtrer par entreprises
+        </button>
+
+      </div>
+    </div>
+    </center>
+  </div>
+</div>
+</div>
 {% endblock %}

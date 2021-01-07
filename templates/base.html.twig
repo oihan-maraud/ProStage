@@ -12,22 +12,15 @@
         {% endblock %}
     </head>
     <body>
+      
 
-      <!-- BLOC DU MENU -->
-        {% block menu %}
-          <h1>-------------- MENU -------------- <i class="icon-user"></i></h1>
-        {% endblock %}
-
-
-      <!-- BLOC JAVASCRIPTS -->
-        {% block body %}{% endblock %}
-        <script src="{{asset('/js/bootstrap.bundle.min.js')}}"</script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
-        integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU"
-        crossorigin="anonymous"></script>
-        <script src="{{asset('/js/bootstrap.min.js')}}"></script>
-        {% block javascripts %}{% endblock %}
-
-
+        <!-- BLOC JAVASCRIPTS -->
+          {% block body %}{% endblock %}
+          <script src="{{asset('/js/bootstrap.bundle.min.js')}}"</script>
+          <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
+          integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU"
+          crossorigin="anonymous"></script>
+          <script src="{{asset('/js/bootstrap.min.js')}}"></script>
+          {% block javascripts %}{% endblock %}
     </body>
 </html>
