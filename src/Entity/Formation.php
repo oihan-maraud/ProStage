@@ -20,14 +20,9 @@ class Formation
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      */
-    private $identifiant;
-
-    /**
-     * @ORM\Column(type="string", length=300)
-     */
-    private $yes;
+    private $intitule;
 
     /**
      * @ORM\Column(type="string", length=10)
@@ -54,26 +49,15 @@ class Formation
         return $this->id;
     }
 
-    public function getIdentifiant(): ?int
+
+    public function getIntitule(): ?string
     {
-        return $this->identifiant;
+        return $this->intitule;
     }
 
-    public function setIdentifiant(int $identifiant): self
+    public function setIntitule(string $intitule): self
     {
-        $this->identifiant = $identifiant;
-
-        return $this;
-    }
-
-    public function getYes(): ?string
-    {
-        return $this->yes;
-    }
-
-    public function setYes(string $yes): self
-    {
-        $this->yes = $yes;
+        $this->intitule = $intitule;
 
         return $this;
     }

@@ -27,7 +27,7 @@ class Stage
     /**
      * @ORM\Column(type="string", length=300)
      */
-    private $yes;
+    private $intitule;
 
     /**
      * @ORM\Column(type="string", length=500)
@@ -92,14 +92,14 @@ class Stage
         return $this;
     }
 
-    public function getYes(): ?string
+    public function getIntitule(): ?string
     {
-        return $this->yes;
+        return $this->intitule;
     }
 
-    public function setYes(string $yes): self
+    public function setIntitule(string $intitule): self
     {
-        $this->yes = $yes;
+        $this->intitule = $intitule;
 
         return $this;
     }
