@@ -5,6 +5,8 @@ namespace App\DataFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use App\Entity\Formation;
+use App\Entity\Stage;
+use App\Entity\Entreprise;
 
 class AppFixtures extends Fixture
 {
@@ -13,22 +15,84 @@ class AppFixtures extends Fixture
       //Creation de generateurs de donnees Faker
       $faker = \Faker\Factory::create('fr_FR');
 
-      $nbFormation = 5;
+      /**************************************
+      ****   CREATION DES ENTREPRISES    ****
+      **************************************/
+      $nbEntreprise = 5;
 
-      for($i = 1; $i <= $nbFormation; $i++ ){
+      for($i = 1; $i <= $nbEntreprise; $i++){
+          $entreprise = new Entreprise();
+          $entreprise -> setNom($faker->company());
+          $entreprise -> setAdresse($faker->address());
+          $entreprise -> setDomaineActivite($faker->catchPhrase());
+          $entreprise -> setNumTel($faker->regexify("0[1-9]{9}"));
+          $entreprise -> setSiteWeb($faker->url());
+
+          /* On regroupe les objets "entreprises" dans un tableau
+          pour pouvoir s'y référer au moment de la création d'une ressource particulière */
+          $tableauEntreprise = array($entreprise);
+          foreach ($tableauEntreprise as $tabEntreprise)
+          {
+          $manager->persist($entreprise);
+          }
+        }
+
+      /************************************************************
+      ****    Liste des formations concernés par des stages    ****
+      ************************************************************/
+      $formationStage = array(
+        "dutInfo" => "DUT Informatique",
+        "dutGEA" => "DUT Gestion des entreprises et des administrations",
+        "dutTC" => "DUT Techniques de Commercialisation",
+        "dutGIM" => "DUT Génie Industriel et Maintenance",
+        "licPA" => "Licence Programmation Avancée",
+        "licMN" => "Licence des Métiers du Numériques"
+      );
+
+      /************************************************************
+      ****    CREATION DES FORMATIONS ET DES STAGES ASSOCIES   ****
+      ************************************************************/
+      foreach ($formationStage as $codeFormation =>$titreFormation){
           // création d'une nouvelle formation
-           $formation1 = new Formation();
-           //Génération d'un non de formations
-           $nomFormation = $faker->regexify("Formation [1-9]");
+           $formation = new Formation();
            //Définition du nom de la formation
-           $formation1->setIntitule($nomFormation);
+           $formation->setIntitule($titreFormation);
            //Définition du niveau de la formation
-           $formation1->setNiveau($faker->regexify("[1-2]e année"));
+           $formation->setNiveau($faker->regexify("[1-2]e année"));
            //Définition de la ville de la formation
-           $formation1->setVille($faker->city());
+           $formation->setVille($faker->city());
            //Enregistrement de la formation créé
-           $manager->persist($formation1);
+           $manager->persist($formation);
+
+
+       // ***** Création de plusieurs Stages associées au formations
+       $nbStages = $faker->numberBetween($min = 0, $max = 5);
+       for ($numStage = 0; $numStage < $nbStages; $numStage++){
+          $stage = new Stage();
+          $stage -> setIntitule("Stage pour $titreFormation");
+          $stage -> setDescription($faker->text($maxNbChars = 200));
+          $stage -> setDateDebut($faker->DateTime());
+          $stage -> setDuree($faker->regexify("[1-6] mois"));
+          $stage -> setCompetencesRequises($faker->text($maxNbChars = 200) );
+          $stage -> setExperiencesRequises($faker->text($maxNbChars = 200) );
+          $stage -> setEmail($faker->email());
+          //création relation Stage -> Formation
+          $stage -> addFormation($formation);
+
+          /****Definir et maj l'entreprise ****/
+          //selectionner une entreprise au hasard parmi les 5 enregistrées dans $tableauEntreprise
+          $numEntreprise = $faker->numberBetween($min = 0, $max = 4);
+          //creation Stage -> Entreprise
+          $stage->setEntreprise($tableauEntreprise[$numEntreprise]);
+          //création relation Entreprise -> Stage
+          $tableauEntreprise[$numEntreprise] -> addEntreprise($stage);
+
+          //Persister les objets modifiés
+          $manager->persist($stage);
+          $manager->persist($tableauEntreprise[$numEntreprise]);
        }
+
+     }//fin du foreach
 
        // Envoyer les données en BD
         $manager->flush();
