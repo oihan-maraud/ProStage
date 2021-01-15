@@ -87,7 +87,7 @@ class AppFixtures extends Fixture
 
 
        // ***** Création de plusieurs Stages associées au formations
-       $nbStages = $faker->numberBetween($min = 0, $max = 5);
+       $nbStages = $faker->numberBetween($min = 0, $max = 3);
        for ($numStage = 0; $numStage < $nbStages; $numStage++){
           $stage = new Stage();
           $stage -> setIntitule("Stage pour $titreFormation");
