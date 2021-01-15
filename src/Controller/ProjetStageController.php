@@ -28,11 +28,11 @@ class ProjetStageController extends AbstractController
     }
 
     /**
-     * @Route("/filtre/{id_filtre}", name="projet_stage_filtre")
+     * @Route("/filtre/entreprise", name="projet_stage_filtre_enreprise")
      */
-    public function filtre($id_filtre): Response
+    public function filtre(): Response
     {
-      return  $this ->render('projet_stage/filtres.html.twig',
-      ['filter'=>  $id_filtre]);
+      return  $this ->render('projet_stage/filtresEntreprise.html.twig');
     }
+
 }
