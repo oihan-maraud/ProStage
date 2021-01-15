@@ -19,12 +19,12 @@ class ProjetStageController extends AbstractController
 
 
     /**
-     * @Route("/stages/{id}", name="projet_stage_Stages")
+     * @Route("/stages/{intitule}", name="projet_stage_Stages")
      */
-    public function stages($id): Response
+    public function stages($intitule): Response
     {
       return  $this ->render('projet_stage/stages.html.twig',
-      ['idStages'=>  $id]);
+      ['idStages'=>  $intitule]);
     }
 
     /**
