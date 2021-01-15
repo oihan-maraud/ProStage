@@ -9,13 +9,17 @@
         {% block stylesheets %}
         <link href="{{asset('/css/bootstrap.min.css')}}" rel="stylesheet">
           <link href="{{asset('/css/fontello.css')}}" rel="stylesheet">
+          <link href="css/bootstrap.min.css" rel="stylesheet">
+          <link href="css/style.css" rel="stylesheet">
         {% endblock %}
     </head>
     <body>
-      
 
+        {% block body %}
+  
+        {% endblock %}
         <!-- BLOC JAVASCRIPTS -->
-          {% block body %}{% endblock %}
+
           <script src="{{asset('/js/bootstrap.bundle.min.js')}}"</script>
           <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
           integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU"
