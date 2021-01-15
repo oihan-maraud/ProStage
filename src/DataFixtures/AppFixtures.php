@@ -18,24 +18,45 @@ class AppFixtures extends Fixture
       /**************************************
       ****   CREATION DES ENTREPRISES    ****
       **************************************/
-      $nbEntreprise = 5;
 
-      for($i = 1; $i <= $nbEntreprise; $i++){
-          $entreprise = new Entreprise();
-          $entreprise -> setNom($faker->company());
-          $entreprise -> setAdresse($faker->address());
-          $entreprise -> setDomaineActivite($faker->catchPhrase());
-          $entreprise -> setNumTel($faker->regexify("0[1-9]{9}"));
-          $entreprise -> setSiteWeb($faker->url());
+      $safran = new Entreprise();
+      $safran -> setNom("Safran");
+      $safran -> setAdresse($faker->address());
+      $safran -> setDomaineActivite("Aéronautique");
+      $safran -> setNumTel($faker->regexify("0[1-9]{9}"));
+      $safran -> setSiteWeb($faker->url());
 
-          /* On regroupe les objets "entreprises" dans un tableau
-          pour pouvoir s'y référer au moment de la création d'une ressource particulière */
-          $tableauEntreprise = array($entreprise);
-          foreach ($tableauEntreprise as $tabEntreprise)
-          {
-          $manager->persist($entreprise);
-          }
-        }
+      $capgemini = new Entreprise();
+      $capgemini -> setNom("Capgemini");
+      $capgemini -> setAdresse($faker->address());
+      $capgemini -> setDomaineActivite("Services informatiques");
+      $capgemini -> setNumTel($faker->regexify("0[1-9]{9}"));
+      $capgemini -> setSiteWeb($faker->url());
+
+      $sopra = new Entreprise();
+      $sopra -> setNom("Sopra Steria");
+      $sopra -> setAdresse($faker->address());
+      $sopra -> setDomaineActivite("Transformations digitales");
+      $sopra -> setNumTel($faker->regexify("0[1-9]{9}"));
+      $sopra -> setSiteWeb($faker->url());
+
+      $seriel = new Entreprise();
+      $seriel -> setNom("Seriel");
+      $seriel -> setAdresse($faker->address());
+      $seriel -> setDomaineActivite("Services informatiques");
+      $seriel -> setNumTel($faker->regexify("0[1-9]{9}"));
+      $seriel -> setSiteWeb($faker->url());
+
+
+      /* On regroupe les objets "entreprises" dans un tableau
+      pour pouvoir s'y référer au moment de la création d'une ressource particulière */
+      $tableauEntreprise = array($safran, $capgemini, $sopra, $seriel);
+
+      // Mise en persistence des objets Entreprise
+      foreach ($tableauEntreprise as $tabEntreprise)
+      {
+        $manager->persist($tabEntreprise);
+      }
 
       /************************************************************
       ****    Liste des formations concernés par des stages    ****
@@ -70,7 +91,7 @@ class AppFixtures extends Fixture
        for ($numStage = 0; $numStage < $nbStages; $numStage++){
           $stage = new Stage();
           $stage -> setIntitule("Stage pour $titreFormation");
-          $stage -> setDescription($faker->text($maxNbChars = 200));
+          $stage -> setDescription($faker->realText($maxNbChars = 200));
           $stage -> setDateDebut($faker->DateTime());
           $stage -> setDuree($faker->regexify("[1-6] mois"));
           $stage -> setCompetencesRequises($faker->text($maxNbChars = 200) );
@@ -81,7 +102,7 @@ class AppFixtures extends Fixture
 
           /****Definir et maj l'entreprise ****/
           //selectionner une entreprise au hasard parmi les 5 enregistrées dans $tableauEntreprise
-          $numEntreprise = $faker->numberBetween($min = 0, $max = 4);
+          $numEntreprise = $faker->numberBetween($min = 0, $max = 3);
           //creation Stage -> Entreprise
           $stage->setEntreprise($tableauEntreprise[$numEntreprise]);
           //création relation Entreprise -> Stage
